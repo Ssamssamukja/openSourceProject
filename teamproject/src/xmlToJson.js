@@ -102,105 +102,10 @@ const xmlData = `<response>
 <url>https://1365.go.kr/vols/P9210/partcptn/timeCptn.do?type=show&progrmRegistNo=3057036</url>
 <yngbgsPosblAt>Y</yngbgsPosblAt>
 </item>
-<item>
-<actBeginTm>0</actBeginTm>
-<actEndTm>23</actEndTm>
-<actPlace>온라인</actPlace>
-<adultPosblAt>N</adultPosblAt>
-<gugunCd>5360000</gugunCd>
-<nanmmbyNm>경상남도 밀양시</nanmmbyNm>
-<noticeBgnde>20231027</noticeBgnde>
-<noticeEndde>20231231</noticeEndde>
-<progrmBgnde>20231101</progrmBgnde>
-<progrmEndde>20231231</progrmEndde>
-<progrmRegistNo>3052180</progrmRegistNo>
-<progrmSj>청소년 자원봉사 온라인 교육</progrmSj>
-<progrmSttusSe>2</progrmSttusSe>
-<sidoCd>6480000</sidoCd>
-<srvcClCode>자원봉사교육 > 자원봉사기본교육</srvcClCode>
-<url>https://1365.go.kr/vols/P9210/partcptn/timeCptn.do?type=show&progrmRegistNo=3052180</url>
-<yngbgsPosblAt>Y</yngbgsPosblAt>
-</item>
-<item>
-<actBeginTm>0</actBeginTm>
-<actEndTm>23</actEndTm>
-<actPlace>개별장소</actPlace>
-<adultPosblAt>N</adultPosblAt>
-<gugunCd>5350000</gugunCd>
-<nanmmbyNm>경상남도 김해시</nanmmbyNm>
-<noticeBgnde>20230904</noticeBgnde>
-<noticeEndde>20231203</noticeEndde>
-<progrmBgnde>20230904</progrmBgnde>
-<progrmEndde>20231203</progrmEndde>
-<progrmRegistNo>3030415</progrmRegistNo>
-<progrmSj>경상남도자원봉사센터 - 2023 청소년 자원봉사 온라인 교육</progrmSj>
-<progrmSttusSe>2</progrmSttusSe>
-<sidoCd>6480000</sidoCd>
-<srvcClCode>자원봉사교육 > 자원봉사기본교육</srvcClCode>
-<url>https://1365.go.kr/vols/P9210/partcptn/timeCptn.do?type=show&progrmRegistNo=3030415</url>
-<yngbgsPosblAt>Y</yngbgsPosblAt>
-</item>
-<item>
-<actBeginTm>14</actBeginTm>
-<actEndTm>16</actEndTm>
-<actPlace>자원봉사센터 강의실(진남경기장 내 진남스포츠센터 3층)</actPlace>
-<adultPosblAt>Y</adultPosblAt>
-<gugunCd>4810000</gugunCd>
-<nanmmbyNm>전라남도 여수시</nanmmbyNm>
-<noticeBgnde>20230901</noticeBgnde>
-<noticeEndde>20231129</noticeEndde>
-<progrmBgnde>20231018</progrmBgnde>
-<progrmEndde>20231129</progrmEndde>
-<progrmRegistNo>3036990</progrmRegistNo>
-<progrmSj>자원봉사 알고합시다!! 바로온 플로깅 교육과 심폐소생술 교육</progrmSj>
-<progrmSttusSe>2</progrmSttusSe>
-<sidoCd>6460000</sidoCd>
-<srvcClCode>자원봉사교육 > 자원봉사기본교육</srvcClCode>
-<url>https://1365.go.kr/vols/P9210/partcptn/timeCptn.do?type=show&progrmRegistNo=3036990</url>
-<yngbgsPosblAt>Y</yngbgsPosblAt>
-</item>
-<item>
-<actBeginTm>6</actBeginTm>
-<actEndTm>23</actEndTm>
-<actPlace>여수시자원봉사온라인교육장접속(http://cafe.daum.net/yeosuvt)</actPlace>
-<adultPosblAt>Y</adultPosblAt>
-<gugunCd>4810000</gugunCd>
-<nanmmbyNm>전라남도 여수시</nanmmbyNm>
-<noticeBgnde>20231120</noticeBgnde>
-<noticeEndde>20231231</noticeEndde>
-<progrmBgnde>20231120</progrmBgnde>
-<progrmEndde>20231231</progrmEndde>
-<progrmRegistNo>3064202</progrmRegistNo>
-<progrmSj>자원봉사란 무엇인가? 온라인 자원봉사 교육</progrmSj>
-<progrmSttusSe>2</progrmSttusSe>
-<sidoCd>6460000</sidoCd>
-<srvcClCode>자원봉사교육 > 자원봉사기본교육</srvcClCode>
-<url>https://1365.go.kr/vols/P9210/partcptn/timeCptn.do?type=show&progrmRegistNo=3064202</url>
-<yngbgsPosblAt>Y</yngbgsPosblAt>
-</item>
-<item>
-<actBeginTm>9</actBeginTm>
-<actEndTm>21</actEndTm>
-<actPlace>온라인</actPlace>
-<adultPosblAt>Y</adultPosblAt>
-<gugunCd>4400000</gugunCd>
-<nanmmbyNm>제천시종합자원봉사센터</nanmmbyNm>
-<noticeBgnde>20231101</noticeBgnde>
-<noticeEndde>20231231</noticeEndde>
-<progrmBgnde>20231101</progrmBgnde>
-<progrmEndde>20231231</progrmEndde>
-<progrmRegistNo>3059442</progrmRegistNo>
-<progrmSj>온라인자원봉사기초교육1.2</progrmSj>
-<progrmSttusSe>2</progrmSttusSe>
-<sidoCd>6430000</sidoCd>
-<srvcClCode>자원봉사교육 > 자원봉사기본교육</srvcClCode>
-<url>https://1365.go.kr/vols/P9210/partcptn/timeCptn.do?type=show&progrmRegistNo=3059442</url>
-<yngbgsPosblAt>Y</yngbgsPosblAt>
-</item>
 </items>
-<numOfRows>10</numOfRows>
+<numOfRows>5</numOfRows>
 <pageNo>1</pageNo>
-<totalCount>7867</totalCount>
+<totalCount>7987</totalCount>
 </body>
 </response>`; 
 
