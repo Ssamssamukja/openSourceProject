@@ -1,13 +1,22 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import Header from "./components/Header"
 import List from "./components/List";
 import { dummy } from "./dummydata";
 
 function App() {
   return (
-    <div>
+    <div className="root-wrap">
+    <BrowserRouter>
+    <Header/>
+    <Routes>
+    <Route
+    path = "/search"
+    element={
       <div className="app-container">
-        {dummy.item.map((item) => {
-          return (
+        {dummy.item.map((item) => (
             <List
+            key={item.progrmregistno}
             BeginTime={item.actbegintm}
             EndTime={item.actendtm}
             Place={item.actplace}
@@ -23,10 +32,14 @@ function App() {
             ServiceClassCode={item.srvcclcode}
             URL={item.url}
             YouthPossible={item.yngbgsposblat}
+            ProgramBeginDate={item.progrmbgnde}
+            ProgramEndDate={item.progrmendde}
             />
-          );
-        })}
+  ))}
       </div>
+    }/>
+    </Routes>
+    </BrowserRouter>
     </div>
   );
 }
