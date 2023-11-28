@@ -27,7 +27,7 @@ export const SearchContainer = styled.div`
 export const Heading = styled.h1`
   width: 100%;
   text-align: center; 
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   margin-top: 7px;
 `;
 
@@ -66,12 +66,22 @@ export const Checkbox = styled.input`
 `;
 
 export const SearchButton = styled.button`
-  padding: 10px 17px; /* 크기 조절 */
+  padding: 12px 25px; /* 크기 조절 */
   background-color: #007bff;
   color: #fff;
   cursor: pointer;
   margin-top: 10px;
   font-size: 17px;
+  border-radius: 8px;
+  border: 0px solid #0d0d0d;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  margin : 7px;
+
+  &:active {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    transform: translateY(1px);
+  }
 `;
 
 export const ConditionGroup = styled.div`
