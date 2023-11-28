@@ -7,7 +7,7 @@ export const ListContainer = styled.div`
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  width: 1000px;
+  width: 800px;
 `;
 
 export const ListInfo = styled.div`
@@ -44,7 +44,7 @@ export const ServiceClassCode = styled.span`
 
 export const SidoGugunSpan = styled.span`
   margin-left: 0px;
-  font-size : 15px; /* Move to the right */
+  font-size : 15px; 
 `;
 
 export const UrlButton = styled.button`

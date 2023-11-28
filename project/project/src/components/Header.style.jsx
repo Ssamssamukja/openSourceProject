@@ -3,10 +3,10 @@ import styled from 'styled-components';
 export const HeaderContainer = styled.div`
   width: 100%;
   margin: 0;
-  background-color: #1b7de6;
-  padding: 10px;
+  background-color: #1271d7;
+  padding: 17px;
   color: #ffffff;
-  font-size: 18px;
+  font-size: 20px;
 `;
 
 export const Navbar = styled.div`
