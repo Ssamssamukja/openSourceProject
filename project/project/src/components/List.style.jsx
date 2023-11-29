@@ -32,8 +32,14 @@ export const Span = styled.span`
   font-size: 14px;
 `;
 
+export const Span2 = styled.span`
+  margin-bottom: 2px;
+  margin-top: 5px;
+  font-size: 14px;
+`;
+
 export const ProgramStatus = styled.span`
-  color: ${(props) => (props.status === '모집중' ? 'blue' : props.status === '모집 완료' ? 'red' : 'black')};
+  color: ${(props) => (props.status === '모집중' ? 'blue' : props.status === '모집완료' ? 'red' : 'black')};
   margin-right: 8px;
   font-weight: bold;
   font-size: 16px;
@@ -59,3 +65,5 @@ export const UrlButton = styled.button`
   cursor: pointer;
   text-decoration: none;
 `;
+
+

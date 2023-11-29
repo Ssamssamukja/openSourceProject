@@ -22,6 +22,7 @@ function AIPage (){
     <div>
         <AIInfo/>
       <AIBox onSearch={handleSearch} />
+      <div className="app-container">
       {searchResults.length > 0 ? (
         searchResults.map((item) => (
                 <List
@@ -43,11 +44,13 @@ function AIPage (){
                 YouthPossible={item.yngbgsposblat}
                 ProgramBeginDate={item.progrmbgnde}
                 ProgramEndDate={item.progrmendde}
+                ProgramCn={item.progrmCn}
                 />
         ))
       ) : (
         <div></div>
       )}
+    </div>
     </div>
   );
 };

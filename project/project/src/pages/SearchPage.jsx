@@ -1,26 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import List from '../components/List';
 import SearchBox from '../components/SearchBox';
 
 function SearchPage (){
     const [searchResults, setSearchResults] = useState([]);
-    const handleSearch = async (searchCriteria) => {
+    const [currentPage, setCurrentPage] = useState(0);
+    const [loading, setLoading] = useState(false);
+    const [lastSearchCriteria, setLastSearchCriteria] = useState({});
+
+    const handleSearch = async (searchCriteria, page) => {
+        setLastSearchCriteria(searchCriteria);
+        setCurrentPage(0);
         try {
-            // 검색 조건에 맞게 query string을 생성
+            setLoading(true);
             const queryString = Object.keys(searchCriteria)
-            .map(key => {
-                // 각 검색 조건에 따라 key와 value를 매칭하여 문자열 생성
+            .map((key) => {
                 switch (key) {
-                case 'gugunNm':
-                case 'sidoNm':
-                case 'srvcClCode':
-                case 'yngbgsPosblAt':
-                case 'adultPosblAt':
-                case 'progrmSttusSe':
-                case 'progrmBgnde':
-                case 'progrmEndde':
-                case 'progrmSj':
+                    case 'gugunNm':
+                    case 'sidoNm':
+                    case 'srvcClCode':
+                    case 'yngbgsPosblAt':
+                    case 'adultPosblAt':
+                    case 'progrmSttusSe':
+                    case 'progrmBgnde':
+                    case 'progrmEndde':
+                    case 'progrmSj':
                     if(searchCriteria[key]) {
                         return `${key}=${encodeURIComponent(searchCriteria[key])}`;
                     }
@@ -29,10 +34,12 @@ function SearchPage (){
                     return '';
                 }
             })
-            .filter(Boolean) // 빈 문자열은 필터링
+            .filter(Boolean)
+            .concat(`page=${page}`)
             .join('&');
         
-            const response = await fetch(`/api/activities/search?${queryString}`, {
+        const response = await fetch(
+            `http://43.202.119.179:8080/api/activities/search?${queryString}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -44,17 +51,40 @@ function SearchPage (){
         }
 
         const searchData = await response.json();
-        setSearchResults(searchData);
-        } catch (error) {
-        console.error('Error searching:', error);
+
+        if (Array.isArray(searchData.content)) {
+            setSearchResults(searchData.content);
+        } else {
+            setSearchResults([]);
         }
+
+        setSearchResults(searchData);
+    } catch (error) {
+        console.error('Error searching:', error);
+    } finally{
+        setLoading(false);
+    }
     };
-  
+
+    const handlePageChange = (newPage) => {
+        if (newPage !== currentPage) {
+            handleSearch(lastSearchCriteria, newPage);
+            setCurrentPage(newPage);
+        }
+      };
+    
+      useEffect(() => {
+        handleSearch({}, currentPage);
+      }, [currentPage]);
+      
+
   return (
     <div className="app-container">
-      <SearchBox onSearch={handleSearch} />
+      <SearchBox onSearch={(searchCriteria) => handleSearch(searchCriteria, currentPage)} />
+      {loading && <div>Loading...</div>}
       {searchResults.length > 0 ? (
-        searchResults.map((item) => (
+        <>
+        {searchResults.map((item) => (
             <List
                 key={item.id}
                 BeginTime={item.actBeginTm}
@@ -69,14 +99,24 @@ function SearchPage (){
                 ProgramSubject={item.progrmSj}
                 ProgramStatus={item.progrmSttusSe}
                 SidoNm={item.sidoNm}
-                ServiceClassCode={item.srvcClcode}
+                ServiceClassCode={item.srvcClCode}
                 URL={item.url}
-                YouthPossible={item.yngbgsPosblat}
+                YouthPossible={item.yngbgsPosblAt}
                 ProgramBeginDate={item.progrmBgnde}
                 ProgramEndDate={item.progrmEndde}
                 ProgramCn={item.progrmCn}
             />
-        ))
+        ))}
+        <div style={{ display: 'flex', gap: '1px', marginTop: '10px' }}>
+        {Array.from({ length: 15 }, (_, index) => index + 1).map((page) => (
+            <button style={{backgroundColor : currentPage === page ? 'gray' : 'white', 
+                color: currentPage === page ? 'white' : 'black',}}
+                key={page} onClick={() => handlePageChange(page)}>
+                {page}
+            </button>
+            ))}
+            </div>
+            </>
       ) : (
         <div>검색 결과가 없습니다</div>
       )}

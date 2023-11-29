@@ -24,6 +24,7 @@ export const SearchContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     width: 60%;
+    max-width: 800px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;

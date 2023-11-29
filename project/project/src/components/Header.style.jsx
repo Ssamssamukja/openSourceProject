@@ -6,7 +6,7 @@ export const HeaderContainer = styled.div`
   background-color: #1e6ebe;
   padding: 15px;
   color: #ffffff;
-  font-size: 20px;
+  font-size: 18px;
 `;
 
 export const Navbar = styled.div`

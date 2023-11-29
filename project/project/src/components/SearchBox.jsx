@@ -121,52 +121,18 @@ const SearchBox = ({ onSearch }) => {
         }));
     };
 
-    /* API 받은 후 수정
-    const handleSearch = async () => {
-        // Prepare the search criteria object based on user input
-        const searchCriteria = {
-          keyword,
-          recruitmentStatus,
-          youthPossible: volunteerType['청소년'],
-          adultPossible: volunteerType['성인'],
-          location,
-          field,
-          startDate,
-          endDate,
-          district,
-        };
-
-        
-    try {
-        const response = await fetch('your_api_endpoint', {
-          method: 'POST', // or 'GET' depending on your API
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(searchCriteria),
-        });
-  
-        const searchData = await response.json();
-        onSearch(searchData);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-  
-    return (  */
-
     const handleSearch = () => {
 
         const searchCriteria = {
-        gugunNm: district,  // 'gugunNm'에 대응하는 쿼리 파라미터
-        sidoNm: location,  // 'sidoNm'에 대응하는 쿼리 파라미터
-        srvcClCode: field,  // 'srvcClCode'에 대응하는 쿼리 파라미터
-        yngbgsPosblAt: volunteerType['청소년'] ? "가능" : "불가능",  // 'yngbgsPosblAt'에 대응하는 쿼리 파라미터
-        adultPosblAt: volunteerType['성인'] ? "가능" : "불가능",  // 'adultPosblAt'에 대응하는 쿼리 파라미터
-        progrmSttusSe: recruitmentStatus,  // 'progrmSttusSe'에 대응하는 쿼리 파라미터
-        progrmBgnde: startDate,  // 'progrmBgnde'에 대응하는 쿼리 파라미터
-        progrmEndde: endDate,  // 'progrmEndde'에 대응하는 쿼리 파라미터
-        progrmSj: keyword,  // 'progrmSj'에 대응하는 쿼리 파라미터
+        gugunNm: district,  
+        sidoNm: location,  
+        srvcClCode: field,  
+        yngbgsPosblAt: volunteerType['청소년'] ? "가능" : "불가능",  
+        adultPosblAt: volunteerType['성인'] ? "가능" : "불가능",  
+        progrmSttusSe: recruitmentStatus,  
+        progrmBgnde: startDate, 
+        progrmEndde: endDate, 
+        progrmSj: keyword, 
         };
 
           onSearch(searchCriteria);
