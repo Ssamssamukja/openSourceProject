@@ -19,7 +19,8 @@ function List({
   URL,
   YouthPossible,
   ProgramBeginDate,
-  ProgramEndDate
+  ProgramEndDate,
+  ProgramCn
 }) {
   const handleButtonClick = () => {
     window.location.href = URL;

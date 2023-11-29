@@ -242,7 +242,7 @@ const AIBox = ({ onSearch }) => {
                     checked={volunteerType['성인']}
                     onChange={() => handleVolunteerTypeChange('성인')}
                 />
-                <lable htmlFor="adultCheckbox">성인</lable>
+                <label htmlFor="adultCheckbox">성인</label>
             </styles.CheckboxContainer>
             </styles.ConditionItem>
         </styles.ConditionGroup>

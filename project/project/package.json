@@ -15,6 +15,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "proxy": "http://43.202.119.179:8080",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
