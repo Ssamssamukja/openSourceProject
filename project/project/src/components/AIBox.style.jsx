@@ -10,21 +10,26 @@ const fadeInUp = keyframes`
         transform: translateY(0);
     }
 `;
+
+
 export const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
 `;
 
 export const SearchContainer = styled.div`
+    flex-direction: column;
+    justify-content: center;
     width: 60%;
-    max-width: 800px;
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start; 
+    align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     padding: 15px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -78,7 +83,7 @@ export const Checkbox = styled.input`
 `;
 
 export const SearchButton = styled.button`
-    padding: 12px 25px; 
+    padding: 12px 25px; /* 크기 조절 */
     background-color: #3b8ce3;
     color: #fff;
     cursor: pointer;

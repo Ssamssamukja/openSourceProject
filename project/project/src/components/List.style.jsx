@@ -8,6 +8,8 @@ export const ListContainer = styled.div`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   width: 800px;
+  background-color: rgb(255, 255, 255);
+  opacity:90%;
 `;
 
 export const ListInfo = styled.div`

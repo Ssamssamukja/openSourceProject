@@ -1,51 +1,3 @@
-/* SearchPage.jsx
-
-import * as styles from './style'; // import styles from style.jsx
-
-import React, { useState } from 'react';
-
-import List from './List';
-import SearchBox from './SearchBox';
-
-function SearchPage() {
-  const [searchResults, setSearchResults] = useState([]);
-
-  const handleSearch = (searchCriteria) => {
-    // Implement your logic to send search criteria to the server
-    // and receive search results from the server
-    // For now, just set some dummy data as an example
-    const dummyData = [
-      { id: 1, name: 'Result 1' },
-      { id: 2, name: 'Result 2' },
-      // Add more data as needed
-    ];
-    
-    setSearchResults(dummyData);
-  };
-
-  return (
-    <div>
-      <SearchBox onSearch={handleSearch} />
-      {searchResults.length > 0 ? (
-        searchResults.map((result) => (
-          <List
-            key={result.id}
-            // Pass data and props to List component as needed
-            {...result}
-          />
-        ))
-      ) : (
-        <p>No results found.</p>
-      )}
-    </div>
-  );
-}
-
-export default SearchPage;
-*/
-
-// Search.jsx
-
 import React, { useState } from 'react';
 
 import List from '../components/List';
@@ -64,7 +16,7 @@ function SearchPage (){
       setSearchResults(dummy.item);
       
   };
-
+//페이지 밑에 몇 페이지인지 만들어줘야 함....
   return (
     <div className="app-container">
       <SearchBox onSearch={handleSearch} />
@@ -78,7 +30,7 @@ function SearchPage (){
                 AdultPossible={item.adultposblat}
                 GugunNm={item.guguncd}
                 OrganizationName={item.nanmmbynm}
-                NoticeBeginDate67y={item.noticebgnde}
+                NoticeBeginDate={item.noticebgnde}
                 NoticeEndDate={item.noticeendde}
                 ProgramRegistNumber={item.progrmregistno}
                 ProgramSubject={item.progrmsj}
