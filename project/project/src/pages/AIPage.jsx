@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 
 import AIBox from '../components/AIBox';
 import AIInfo from '../components/AIInfo'
@@ -7,24 +7,75 @@ import {dummy} from '../dummydata';
 
 function AIPage (){
     const [searchResults, setSearchResults] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [SearchCriteria, setSearchCriteria] = useState({});
 
-  const handleSearch = (searchData) => {
-    // 여기서 API 호출 및 데이터 가져오기
-    // axios 또는 fetch 등을 사용하여 서버에 검색 조건을 전달하고 결과를 받아옴
-    // setSearchResults(받아온 데이터);
-    console.log('Search Data:', searchData);
-// 더 많은 결과들 추가
-      setSearchResults(dummy.item);
+    const handleSearch = async (searchCriteria) => {
+        try {
+            setLoading(true);
+            const queryString = Object.keys(searchCriteria)
+            .map((key) => {
+                switch (key) {
+                    case 'gugunNm':
+                    case 'sidoNm':
+                    case 'srvcClCode':
+                    case 'yngbgsPosblAt':
+                    case 'adultPosblAt':
+                    case 'progrmBgnde':
+                    case 'progrmEndde':
+                    case 'totalTime':
+                    if(searchCriteria[key]) {
+                        return `${key} : ${encodeURIComponent(searchCriteria[key])}`;
+                    }
+                    return '';
+                default:
+                    return '';
+                }
+            })
+            .filter(Boolean)
+            .join('&');
+            setSearchCriteria(queryString);
+            const response = await fetch(
+                `API`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(SearchCriteria)
+                });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const searchData = await response.json();
+
+            if (Array.isArray(searchData.content)) {
+                setSearchResults(searchData.content);
+            } else {
+                setSearchResults([]);
+            }
+
+        } catch (error) {
+            console.error('Error searching:', error);
+        } finally{
+            setLoading(false);
+        }
+    };
+    
+      useEffect(() => {
+        handleSearch({} );
+      }, []);
       
-  };
-//페이지 밑에 몇 페이지인지 만들어줘야 함....
+      // 나중에 dummy를 SearchResults로 바꿔줘야함.
   return (
     <div>
         <AIInfo/>
-      <AIBox onSearch={handleSearch} />
+      <AIBox onSearch={(searchCriteria) => handleSearch(searchCriteria)} />
       <div className="app-container">
-      {searchResults.length > 0 ? (
-        searchResults.map((item) => (
+      {loading && <div>Loading...</div>}
+      {dummy.length > 0 ? (
+        dummy.map((item) => (
                 <List
                 key={item.progrmregistno}
                 BeginTime={item.actbegintm}
