@@ -9,9 +9,9 @@ function SearchPage (){
     const [loading, setLoading] = useState(false);
     const [lastSearchCriteria, setLastSearchCriteria] = useState({});
 
-    const handleSearch = async (searchCriteria, page) => {
+    const handleSearch = async (searchCriteria=lastSearchCriteria, page =1) => {
         setLastSearchCriteria(searchCriteria);
-        setCurrentPage(0);
+        setCurrentPage(page);
         try {
             setLoading(true);
             const queryString = Object.keys(searchCriteria)
@@ -35,7 +35,7 @@ function SearchPage (){
                 }
             })
             .filter(Boolean)
-            .concat(`page=${page}`)
+            .concat(`page=${page-1}`)
             .join('&');
         
         const response = await fetch(
@@ -59,6 +59,7 @@ function SearchPage (){
         }
 
         setSearchResults(searchData);
+
     } catch (error) {
         console.error('Error searching:', error);
     } finally{
@@ -69,18 +70,17 @@ function SearchPage (){
     const handlePageChange = (newPage) => {
         if (newPage !== currentPage) {
             handleSearch(lastSearchCriteria, newPage);
-            setCurrentPage(newPage);
         }
       };
     
-      useEffect(() => {
-        handleSearch({}, currentPage);
-      }, [currentPage]);
+    useEffect(() => {
+        handleSearch(lastSearchCriteria, currentPage+1);
+    }, []);
       
 
   return (
     <div className="app-container">
-      <SearchBox onSearch={(searchCriteria) => handleSearch(searchCriteria, currentPage)} />
+      <SearchBox onSearch={(searchCriteria) => handleSearch(searchCriteria, 1)} />
       {loading && <div>Loading...</div>}
       {searchResults.length > 0 ? (
         <>
@@ -107,7 +107,7 @@ function SearchPage (){
                 ProgramCn={item.progrmCn}
             />
         ))}
-        <div style={{ display: 'flex', gap: '1px', marginTop: '10px' }}>
+        <div style={{ display: 'block', gap: '1px', marginTop: '10px', width: '1000px', justifyContent:'center'  }}>
         {Array.from({ length: 15 }, (_, index) => index + 1).map((page) => (
             <button style={{backgroundColor : currentPage === page ? 'gray' : 'white', 
                 color: currentPage === page ? 'white' : 'black',}}
