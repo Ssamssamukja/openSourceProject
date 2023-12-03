@@ -5,13 +5,11 @@ import React,{useState} from 'react';
 function List({
   BeginTime,
   EndTime,
-  Place,
   AdultPossible,
   GugunNm,
   OrganizationName,
   NoticeBeginDate,
   NoticeEndDate,
-  ProgramRegistNumber,
   ProgramSubject,
   ProgramStatus,
   SidoNm,

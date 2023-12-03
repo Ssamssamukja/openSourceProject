@@ -138,13 +138,14 @@ const AIBox = ({ onSearch }) => {
     
     const handleSearch = () => {
         const searchCriteria = {
+            totalTime: totalTime,
             gugunNm: district,  
             sidoNm: location,  
-            srvcClCode: [field1, field2],
+            srvcClCodes: [field1, field2],
             yngbgsPosblAt: volunteerType['청소년'] ? "가능" : "불가능",  
             adultPosblAt: volunteerType['성인'] ? "가능" : "불가능",  
-            progrmBgnde: startDate, 
-            progrmEndde: endDate, 
+            possibleStartDate: startDate, 
+            possibleEndDate: endDate, 
             };
     
               onSearch(searchCriteria);

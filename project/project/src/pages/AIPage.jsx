@@ -1,31 +1,31 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 
 import AIBox from '../components/AIBox';
 import AIInfo from '../components/AIInfo'
-import List from '../components/List';
-import {dummy} from '../dummydata';
+import AIList from '../components/AIList';
 
 function AIPage (){
-    const [searchResults, setSearchResults] = useState([]);
+    const [searchResults, setSearchResults] = useState([]);//가져온 목록
     const [loading, setLoading] = useState(false);
-    const [SearchCriteria, setSearchCriteria] = useState({});
+    const [SearchCriteria, setSearchCriteria] = useState({});//조건
 
-    const handleSearch = async (searchCriteria) => {
+    const handleSearch = async (searchCriteria=SearchCriteria) => {
+        searchCriteria = searchCriteria || {};
         try {
             setLoading(true);
             const queryString = Object.keys(searchCriteria)
             .map((key) => {
                 switch (key) {
+                    case 'totalTime':
                     case 'gugunNm':
                     case 'sidoNm':
-                    case 'srvcClCode':
+                    case 'srvcClCodes':
                     case 'yngbgsPosblAt':
                     case 'adultPosblAt':
-                    case 'progrmBgnde':
-                    case 'progrmEndde':
-                    case 'totalTime':
+                    case 'possibleStartDate':
+                    case 'possibleEndDate':
                     if(searchCriteria[key]) {
-                        return `${key} : ${encodeURIComponent(searchCriteria[key])}`;
+                        return `${key}=${encodeURIComponent(searchCriteria[key])}`;
                     }
                     return '';
                 default:
@@ -34,27 +34,29 @@ function AIPage (){
             })
             .filter(Boolean)
             .join('&');
+
             setSearchCriteria(queryString);
             const response = await fetch(
-                `API`, {
-                method: 'POST',
+                `http://43.202.119.179:8080/api/activities/recommendActivities?${queryString}`, {
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(SearchCriteria)
-                });
-
+                })
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
 
             const searchData = await response.json();
 
-            if (Array.isArray(searchData.content)) {
-                setSearchResults(searchData.content);
+            if (searchData.content && Array.isArray(searchData.content)) {
+                setSearchResults(searchData);
+                console.log("yes")
             } else {
                 setSearchResults([]);
             }
+            setSearchResults(searchData);
+            
 
         } catch (error) {
             console.error('Error searching:', error);
@@ -63,45 +65,48 @@ function AIPage (){
         }
     };
     
-      useEffect(() => {
-        handleSearch({} );
-      }, []);
+    
+   
+
+    
       
-      // 나중에 dummy를 SearchResults로 바꿔줘야함.
+     
   return (
     <div>
         <AIInfo/>
-      <AIBox onSearch={(searchCriteria) => handleSearch(searchCriteria)} />
-      <div className="app-container">
-      {loading && <div>Loading...</div>}
-      {dummy.length > 0 ? (
-        dummy.map((item) => (
-                <List
-                key={item.progrmregistno}
-                BeginTime={item.actbegintm}
-                EndTime={item.actendtm}
-                Place={item.actplace}
-                AdultPossible={item.adultposblat}
-                GugunNm={item.guguncd}
-                OrganizationName={item.nanmmbynm}
-                NoticeBeginDate67y={item.noticebgnde}
-                NoticeEndDate={item.noticeendde}
-                ProgramRegistNumber={item.progrmregistno}
-                ProgramSubject={item.progrmsj}
-                ProgramStatus={item.progrmsttusse}
-                SidoNm={item.sidocd}
-                ServiceClassCode={item.srvcclcode}
-                URL={item.url}
-                YouthPossible={item.yngbgsposblat}
-                ProgramBeginDate={item.progrmbgnde}
-                ProgramEndDate={item.progrmendde}
-                ProgramCn={item.progrmCn}
-                />
-        ))
-      ) : (
-        <div></div>
-      )}
-    </div>
+            <AIBox onSearch={(searchCriteria) => handleSearch(searchCriteria)} />
+            <div className="app-container">
+            {loading && <div>Loading...</div>}
+            {searchResults && searchResults.length > 0 ? (
+                searchResults.map((item) => (
+                    <AIList
+                    key={item.id}
+                    BeginTime={item.actBeginTm}
+                    EndTime={item.actEndTm}
+                    ActDuringTm={item.actDuringTm} //추가
+                    Place={item.actPlace}
+                    AdultPossible={item.adultPosblAt}
+                    GugunNm={item.gugunNm}
+                    OrganizationName={item.nanmmbyNm}
+                    NoticeBeginDate={item.noticeBgnde}
+                    NoticeEndDate={item.noticeEndde}
+                    ProgramRegistNumber={item.progrmRegistNo}
+                    ProgramSubject={item.progrmSj}
+                    ProgramStatus={item.progrmSttusSe}
+                    SidoNm={item.sidoNm}
+                    ServiceClassCode={item.srvcClCode}
+                    URL={item.url}
+                    YouthPossible={item.yngbgsPosblAt}
+                    ProgramBeginDate={item.progrmBgnde}
+                    ProgramEndDate={item.progrmEndde}
+                    ProgramCn={item.progrmCn}
+                    AssignedDate={item.assignedDate} //추가
+                    />
+                ))
+            ) : (
+                <div>데이터가 부족하여 추천드릴 수 없었습니다.</div>
+            )}
+        </div>
     </div>
   );
 };

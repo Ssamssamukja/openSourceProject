@@ -72,7 +72,8 @@ function SearchPage (){
             handleSearch(lastSearchCriteria, newPage);
         }
       };
-    
+
+    //최초 페이지 들어갈 때 렌더링
     useEffect(() => {
         handleSearch(lastSearchCriteria, currentPage+1);
     }, []);
@@ -107,10 +108,10 @@ function SearchPage (){
                 ProgramCn={item.progrmCn}
             />
         ))}
-        <div style={{ display: 'block', gap: '1px', marginTop: '10px', width: '1000px', justifyContent:'center'  }}>
+        <div style={{ display: 'block', gap: '1px', marginTop: '10px'  }}>
         {Array.from({ length: 15 }, (_, index) => index + 1).map((page) => (
-            <button style={{backgroundColor : currentPage === page ? 'gray' : 'white', 
-                color: currentPage === page ? 'white' : 'black',}}
+            <button style={{backgroundColor : currentPage === page ? 'skyblue' : 'white', 
+                color: currentPage === page ? 'white' : 'black',width:'60px',height:'30px'}}
                 key={page} onClick={() => handlePageChange(page)}>
                 {page}
             </button>
