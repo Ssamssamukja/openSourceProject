@@ -156,8 +156,10 @@ function SearchPage (){
             {currentPage >-1 && <button onClick={handlePreviousGroup}>이전</button>}
             {Array.from({ length: lastPageInGroup - firstPageInGroup + 1 }, (_, index) => index+firstPageInGroup).map((page) => (
                 <button 
-                    style={{backgroundColor : currentPage === page ? 'skyblue' : 'white', 
-                    color: currentPage === page ? 'white' : 'black',width:'60px',height:'30px'}}
+                    style={{backgroundColor : currentPage === page ? '#1e6ebe' : 'white', 
+                    color: currentPage === page ? 'white' : 'black',width:'60px',height:'30px',
+                    border: '1px solid #ccc', 
+                    borderRadius: '4px',}}
                     key={page} 
                     onClick={() => handlePageChange(page)}
                 >
