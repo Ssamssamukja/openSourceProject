@@ -121,35 +121,41 @@ const AIBox = ({ onSearch }) => {
     };
 
     const handleField1Change = (e) => {
-        const selectedFields = e.target.value;
-        setField1(selectedFields);
-        
-        if (selectedFields === '') {
-            setField2('');
+        const selectedField1 = e.target.value;
+        setField1(selectedField1.includes('전체') ? '' : selectedField1);  
+        // 봉사분야 전체를 눌렀을 때 추가하기로 바뀌게 하는 거.
+        if (selectedField1.includes('전체')) {
+            setField2('추가하기');
+            
           }
     };
 
-    
+
     const handleField2Change = (e) => {
-        const selectedFields = e.target.value;
-        setField2(selectedFields);
+        const selectedField2 = e.target.value;
+        setField2(selectedField2.includes('추가하기') ? '' : selectedField2);
     };
 
     
     const handleSearch = () => {
-        const searchCriteria = {
-            totalTime: totalTime,
-            gugunNm: district,  
-            sidoNm: location,  
-            srvcClCodes: [field1, field2],
-            yngbgsPosblAt: volunteerType['청소년'] ? "가능" : "불가능",  
-            adultPosblAt: volunteerType['성인'] ? "가능" : "불가능",  
-            possibleStartDate: startDate, 
-            possibleEndDate: endDate, 
-            };
+      const srvcClCodes = [field1, field2].filter(field => field !== '' && field !== '추가하기');
+      // 전체 눌렀을 때 추가하기로 바꾸게 되었을 때 추가하기가 srvcClCodes에 들어가지 않도록 함.
+      
+      const searchCriteria = {
+          totalTime: totalTime,
+          gugunNm: district,  
+          sidoNm: location,  
+          yngbgsPosblAt: volunteerType['청소년'] ? "가능" : "불가능",  
+          adultPosblAt: volunteerType['성인'] ? "가능" : "불가능",  
+          possibleStartDate: startDate, 
+          possibleEndDate: endDate, 
+      };
+      if (srvcClCodes.length > 0) {  // srvcClCodes가 비어있지 않을 때만 추가한다.
+        searchCriteria.srvcClCodes = srvcClCodes;
+      }
     
-              onSearch(searchCriteria);
-            };
+      onSearch(searchCriteria);
+    };
     
 
     return (
@@ -195,7 +201,7 @@ const AIBox = ({ onSearch }) => {
             <styles.ConditionItem>
             <styles.SearchLabel>봉사분야</styles.SearchLabel>
             <styles.SelectBox value={field1} onChange={handleField1Change}>
-                <option value="">-- 봉사분야 전체 --</option>
+                <option value="전체">-- 봉사분야 전체 --</option>
                 <option value="생활편의지원">생활편의지원</option>
                 <option value="주거환경">주거환경</option>
                 <option value="상담">상담</option>
@@ -215,7 +221,7 @@ const AIBox = ({ onSearch }) => {
                 <option value="기타">기타</option>
             </styles.SelectBox>
             <styles.SelectBox value={field2} onChange={handleField2Change} >
-                <option value="">-- 봉사분야 추가하기 --</option>
+                <option value="추가하기">-- 봉사분야 추가하기 --</option>
                 <option value="생활편의지원">생활편의지원</option>
                 <option value="주거환경">주거환경</option>
                 <option value="상담">상담</option>

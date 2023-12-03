@@ -7,7 +7,6 @@ function Header() {
   return (
     <styles.HeaderContainer>
       <styles.Navbar>
-        <Link to="/">Home</Link>
         <Link to="/AI">봉사 추천</Link>
         <Link to="/search">봉사 조회</Link>
       </styles.Navbar>

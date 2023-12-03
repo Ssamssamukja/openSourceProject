@@ -34,22 +34,23 @@ function AIList({
     };
 
   return (
+    <styles.Container>
+        <styles.Box>
+            <styles.H1>
+            <styles.AssignedDate>{AssignedDate}</styles.AssignedDate>
+            <styles.ActDuringTm>{ActDuringTm}시간</styles.ActDuringTm>
+            </styles.H1>
+        </styles.Box>
     <styles.ListContainer>
         <styles.ListInfo>
             <styles.ListItem>
-                <div>
                 <styles.ProgramStatus status={ProgramStatus}>
                     {ProgramStatus}
                 </styles.ProgramStatus>
                 <styles.SidoGugunSpan> {SidoNm} {GugunNm}</styles.SidoGugunSpan>
                 <styles.ServiceClassCode>{">> "}{ServiceClassCode}</styles.ServiceClassCode>
-                </div>
-                <styles.ActDuringTm>{ActDuringTm}시간 봉사</styles.ActDuringTm>
             </styles.ListItem>
-            <styles.ListItem>
-                <styles.Heading>{ProgramSubject}</styles.Heading>
-                <styles.AssignedDate>{AssignedDate}</styles.AssignedDate>
-            </styles.ListItem>
+            <styles.Heading>{ProgramSubject}</styles.Heading>
             <styles.Span>봉사 기간 : {ProgramBeginDate} ~ {ProgramEndDate}</styles.Span>
             <styles.Span>봉사 시간: {BeginTime}시 ~ {EndTime}시</styles.Span>
             <styles.Span>성인 가능 여부 : {AdultPossible}</styles.Span>
@@ -79,6 +80,7 @@ function AIList({
             </styles.UrlButton>
         </styles.ListInfo>
     </styles.ListContainer>
+    </styles.Container>
   );
 }
 
