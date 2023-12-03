@@ -72,9 +72,7 @@ export const UrlButton = styled.button`
 `;
 
 export const ActDuringTm = styled.span`
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-sizing: border-box;
+    color:#3b8ce3;
     margin-left: 10px;
     padding: 2px;
     font-size: 25px;
@@ -97,6 +95,7 @@ export const Box = styled.div`
     margin-bottom: 10px;
     margin-top: 0px;
     padding: 4px;
+    padding-left: 7px;
     border: 1px solid #ccc;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
