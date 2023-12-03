@@ -168,7 +168,7 @@ function SearchPage (){
           </div>
             </>
       ) : (
-        <div>검색 결과가 없습니다</div>
+        <div></div>
       )}
     </div>
   );
