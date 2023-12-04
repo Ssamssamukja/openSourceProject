@@ -104,7 +104,7 @@ const AIBox = ({ onSearch }) => {
 
     const handleLocationChange = (e) => {
         const selectedLocation = e.target.value;
-        setLocation(selectedLocation);
+        setLocation(selectedLocation.includes('전체') ? '' : selectedLocation);
         setDistrict('');
     };
 
@@ -291,7 +291,7 @@ const AIBox = ({ onSearch }) => {
         </styles.ConditionItem>
         </styles.ConditionGroup>
         </styles.SearchContainer>
-        <styles.SearchButton onClick={handleSearch}>슈봉아 부탁해</styles.SearchButton>
+        <styles.SearchButton onClick={handleSearch}>슈볼아 부탁해</styles.SearchButton>
         </styles.Container>
     );
     };

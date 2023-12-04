@@ -7,7 +7,7 @@ function Header() {
   return (
     <styles.HeaderContainer>
       <styles.Navbar>
-        <styles.Linka>SSUBONG</styles.Linka>
+        <styles.Linka>SSUVOL</styles.Linka>
         <Link to="/AI">봉사 추천</Link>
         <Link to="/search">봉사 조회</Link>
       </styles.Navbar>
