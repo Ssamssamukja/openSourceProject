@@ -104,15 +104,15 @@ const AIBox = ({ onSearch }) => {
 
     const handleLocationChange = (e) => {
         const selectedLocation = e.target.value;
-        const selectedDistrict = selectedLocation.includes('구군 전체') ? '' : district;
         setLocation(selectedLocation);
-        setDistrict(selectedDistrict);
+        setDistrict('');
     };
 
     const handleDistrictChange = (e) => {
         const selectedDistrict = e.target.value;
-        setDistrict(selectedDistrict);
+        setDistrict(selectedDistrict.includes('전체') ? '' : selectedDistrict);
     };
+
     const handleVolunteerTypeChange = (type) => {
         setVolunteerType((prevType) => ({
           ...prevType,
@@ -140,10 +140,8 @@ const AIBox = ({ onSearch }) => {
     const handleSearch = () => {
       const srvcClCodes = [field1, field2].filter(field => field !== '' && field !== '추가하기');
       // 전체 눌렀을 때 추가하기로 바꾸게 되었을 때 추가하기가 srvcClCodes에 들어가지 않도록 함.
-      
       const searchCriteria = {
           totalTime: totalTime,
-          gugunNm: district,  
           sidoNm: location,  
           yngbgsPosblAt: volunteerType['청소년'] ? "가능" : "불가능",  
           adultPosblAt: volunteerType['성인'] ? "가능" : "불가능",  
@@ -152,6 +150,9 @@ const AIBox = ({ onSearch }) => {
       };
       if (srvcClCodes.length > 0) {  // srvcClCodes가 비어있지 않을 때만 추가한다.
         searchCriteria.srvcClCodes = srvcClCodes;
+      }
+      if(district.length > 0) {
+        searchCriteria.gugunNm = district;
       }
     
       onSearch(searchCriteria);
@@ -167,7 +168,7 @@ const AIBox = ({ onSearch }) => {
             <styles.SelectBox
                 value={location}
                 onChange={handleLocationChange}>
-                <option value="">-- 전체 --</option>
+                <option value="전체">-- 전체 --</option>
                 <option value="서울특별시">서울특별시</option>
                 <option value="부산광역시">부산광역시</option>
                 <option value="대구광역시">대구광역시</option>
@@ -290,7 +291,7 @@ const AIBox = ({ onSearch }) => {
         </styles.ConditionItem>
         </styles.ConditionGroup>
         </styles.SearchContainer>
-        <styles.SearchButton onClick={handleSearch}>AI야 부탁해</styles.SearchButton>
+        <styles.SearchButton onClick={handleSearch}>슈봉아 부탁해</styles.SearchButton>
         </styles.Container>
     );
     };
