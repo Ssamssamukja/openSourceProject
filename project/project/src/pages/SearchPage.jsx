@@ -103,8 +103,10 @@ function SearchPage (){
     };
 
     const handlePreviousGroup = () => {
-        setCurrentPageGroup(currentPageGroup - 1);
-        setCurrentPage((currentPageGroup - 1) * 10);
+        if(currentPageGroup > 1) {
+            setCurrentPageGroup(currentPageGroup - 1);
+            setCurrentPage((currentPageGroup - 1) * 10);
+        }
     };
 
     //최초 페이지 들어갈 때 렌더링
@@ -153,7 +155,7 @@ function SearchPage (){
             />
         ))}
         <div style={{ display: 'block', gap: '1px', marginTop: '1px', width:'800px' }}>
-            {currentPage >-1 && <button onClick={handlePreviousGroup}>이전</button>}
+            {currentPageGroup > 1 && <button onClick={handlePreviousGroup}>이전</button>}
             {Array.from({ length: lastPageInGroup - firstPageInGroup + 1 }, (_, index) => index+firstPageInGroup).map((page) => (
                 <button 
                     style={{backgroundColor : currentPage === page ? '#1e6ebe' : 'white', 
