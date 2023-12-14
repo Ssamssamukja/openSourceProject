@@ -1,29 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import React, { useEffect, useState } from 'react';
 
-import Header from './components/Header';
-import List from './components/List';
-import ListDetail from './components/ListDetail';
-import { fetchData } from './api';
+import Header from './components/Header.jsx';
+import List from './components/List.jsx';
+/*import ListDetail from './pages/ListDetail.jsx';*/
+import React from 'react';
+import {dummy} from './Json.js';
 
 function App() {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    const fetchDataAsync = async () => {
-      try {
-        const result = await fetchData();
-        if (result && result.response && result.response.body && result.response.body.items) {
-          setData(result.response.body.items.item);
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchDataAsync();
-  }, []);
-
   return (
     <BrowserRouter>
       <Header />
@@ -31,30 +14,42 @@ function App() {
         <Route
           path="/search"
           element={
-            <div>
-              {data.length > 0 && data.map(item => (
+            <div className="app-container">
+              {dummy.item.map(item => (
                 <List
-                  key={item.progrmRegistNo}
-                  progrmSj={item.progrmSj}
-                  agentName={item.nanmmbyNm}
-                  programBgnDate={item.progrmBgnde}
-                  programEndDate={item.progrmEndde}
-                  programBgnTime={item.actBeginTm}
-                  programEndTime={item.actEndTm}
-                  sidoCode={item.sidoCd}
-                  gugunCode={item.gugunCd}
-                  adultPosblAt={item.adultPosblAt}
-                  yngbbgsPosblAt={item.yngbbgsPosblAt}
-                  srvcClCode={item.srvcClCode}
-                  url={item.url}
+                  key={item.progrmregistno}
+                  ProgramRegistNumber={item.progrmregistno}
+                  ProgramSubject={item.progrmsj}
+                  OrganizationName={item.nanmmbynm}
+                  ProgramStartDate={item.progrmbgnde}
+                  ProgramEndDate={item.progrmendde}
+                  BeginTime={item.actbegintm}
+                  EndTime={item.actendtm}
+                  RegionCode={item.sidocd}
+                  ProvanceCode={item.guguncd}
+                  AdultPossible={item.adultposblat}
+                  YouthPossible={item.yngbgsposblat}
+                  ServiceClassCode={item.srvcclcode}
+                  URL={item.url}
+                  ProgramStatus={item.progrmsttusse}
+                  ProvinceCode={item.guguncd}
+                  Place={item.actplace}
+                  NoticeStartDate={item.noticebgnde}
+                  NoticeEndDate={item.noticeendde}
                 />
               ))}
             </div>
           }
-        /> */
+        /> 
       </Routes>
     </BrowserRouter>
   );
 }
 
 export default App;
+
+/*<Route
+          path="/search/details/:progrmRegistNo"
+          element={<ListDetail />}
+        />
+        */
