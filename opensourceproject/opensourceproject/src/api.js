@@ -1,16 +1,40 @@
 import axios from 'axios';
 
-const apiEndpoint = 'http://localhost:3004';
-
 export const fetchData = async () => {
+  const newEndpoint = 'http://openapi.1365.go.kr/openapi/service/rest/VolunteerPartcptnService/getVltrSearchWordList';
+  const numOfRows = 10;
+  const pageNo = 1;
+
   try {
-    const response = await axios.get(`${apiEndpoint}/`);
+    const response = await axios.get(newEndpoint, {
+      params: {
+        numOfRows,
+        pageNo,
+      },
+    });
     return response.data;
   } catch (error) {
     console.error('Error:', error);
+    throw error;
   }
 };
+export const fetchDetailData = async (progrmRegistNo) => {
+  const detailEndpoint = 'http://openapi.1365.go.kr/openapi/service/rest/VolunteerPartcptnService/getVltrPartcptnItem';
+  const serviceKey = '3T6ayOcpYREUzEd21Uq5JK7q9%2BIPnxLZDTtVsOa0TZap7zKaNufDN7CDhhOczlthnpPcRnnynrccY3Sc9yPZXQ%3D%3D';
 
+  try {
+    const response = await axios.get(detailEndpoint, {
+      params: {
+        serviceKey,
+        progrmRegistNo,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
+  }
+};
 
   /*
    지금 json형식으로 바꿨기 때문에 아래와 같은 데이터를 사용해야함.

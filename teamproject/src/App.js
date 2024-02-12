@@ -1,4 +1,8 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
+
+import Header from './components/Header';
+import List from './components/List';
 import { fetchData } from './api';
 
 function App() {
@@ -16,11 +20,34 @@ function App() {
   }, []);
 
   return (
-    <div>
-      {data.map(item => (
-        <p key={item.id}>{item.name}</p>
-      ))}
-    </div>
+    <BrowserRouter>
+    <Header/>
+    <Routes>
+      <Route
+        path="/search"
+        element={
+          <div>
+            {data.map(item => (
+            <List 
+              key={item.progrmRegistNo}
+              progrmSj={item.progrmSj}
+              agentName={item.nanmmbyNm}
+              programBgnDate={item.progrmBgnde}
+              programEndDate={item.progrmEndde}
+              programBgnTime={item.actBeginTm}
+              programEndTime={item.actEndTm}
+              sidoCode={item.sidoCd}
+              gugunCode={item.gugunCd}
+              adultPosblAt={item.adultPosblAt}
+              yngbbgsPosblAt={item.yngbbgsPosblAt}
+              srvcClCode={item.srvcClCode}
+              url = {item.url}
+            />
+          ))}
+      </div>
+        }/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

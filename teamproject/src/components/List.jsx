@@ -1,17 +1,24 @@
+import { ListContainer } from './List.syle';
 import React from 'react';
-import jsonData from './xmlToJson'; // import jsonData
 
-const List = () => {
+function List ({ key, progrmSj, agentName, programBgnDate, programEndDate, programBgnTime, programEndTime, sidoCode, gugunCode, adultPosblAt, yngbbgsPosblAt, srvcClCode }) {
+    const time = programEndTime-programBgnTime;
+    
     return (
-        // jsonData를 이용하여 리스트를 렌더링
-        <div>
-            {jsonData.response.body.items.item.map((item, index) => (
-                <div key={index}>
-                    <h2>{item.progrmSj._text}</h2> {/* 예시: 프로그램 제목을 렌더링 */}
-                    {/* 필요한 항목을 추가로 렌더링하세요 */}
-                </div>
-            ))}
-        </div>
+        <ListContainer>
+            <div key={key}>
+                <h2>{progrmSj}</h2> 
+                <p>{agentName}</p>
+                <p>{programBgnDate}</p>
+                <p>{programEndDate}</p>
+                <p>{time}</p>
+                <p>{sidoCode}</p>
+                <p>{gugunCode}</p>
+                <p>{adultPosblAt}</p>
+                <p>{yngbbgsPosblAt}</p>
+                <p>{srvcClCode}</p>
+            </div>
+        </ListContainer>
     );
 };
 
